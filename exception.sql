@@ -1,0 +1,41 @@
+DECLARE
+    id employees.employee_id%TYPE;
+BEGIN
+    SELECT
+        employee_id
+    INTO id
+    FROM
+        employees
+    WHERE
+        employee_id = &emp_id;
+    
+    --DISPLAY THE RESULT
+
+    dbms_output.put_line('EMPLOYEE_ID :' || id);
+END;
+
+--IF EMPLOYEE_ID DOESN'T EXIST IN TABLE WHICH I ENTERED AND THIS STATEMENT WILL THROW AN EXCEPTION : NO DATA FOUND
+
+
+--LET'S USE SUM() FUNCTION
+
+DECLARE
+    SALARY employees.SALARY%TYPE;
+BEGIN
+    SELECT
+        SUM(SALARY)
+    INTO SALARY
+    FROM
+        employees
+    WHERE
+        employee_id BETWEEN &emp_id1 AND &EMP_ID2;
+    
+    --DISPLAY THE RESULT
+
+    dbms_output.put_line('SALARY IS :' || SALARY);
+END;
+
+--IF EMPLOYEE_ID DOESN'T EXISTS IN TABLE WHICH  I ENTERED THE ID AND THIS STATEMENT DOESN'T THROW AN EXCEPTION
+--BECAUSE SUM() FUNCTION RETURNS ZERO OR NULL   
+--ALSO COUNT FUNCTION RETURNS ZERO AND COUNT() FUNCTION DOESN'T THROW AN EXCEPTION
+
