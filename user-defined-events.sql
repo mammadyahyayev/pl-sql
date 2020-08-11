@@ -29,13 +29,10 @@ BEGIN
     IF old_salary < min_salary THEN
         RAISE too_little_money;
     END IF;
-    
     new_salary := old_salary * 1.5;
-    
     IF new_salary > max_salary THEN
         RAISE too_much_money;
     END IF;
-    
     UPDATE employees
     SET
         salary = new_salary
@@ -43,7 +40,6 @@ BEGIN
         employee_id = emp_id;
 
     COMMIT;
-    
     dbms_output.put_line('Salary is increased...');
 EXCEPTION
     WHEN too_little_money THEN
