@@ -4,8 +4,14 @@
 --AND PRIVATE FUNCTION MUST BE THE FIRST
 CREATE OR REPLACE PACKAGE BODY package_test AS
 
---CHECK SALARY IS VALID OR NOT
+    --DEFINE GLOBAL VARIABLES
+    SALARY_CAP  NUMBER;
 
+
+   
+
+    --CHECK SALARY IS VALID OR NOT
+    --PRIVATE FUNCTION
     FUNCTION check_salary_varchar2 (
         id IN NUMBER
     ) RETURN VARCHAR2 IS
@@ -27,6 +33,16 @@ CREATE OR REPLACE PACKAGE BODY package_test AS
         END IF;
 
     END check_salary_varchar2;
+
+    --CREATE FUNCTION AND THIS FUNCTION RETURNS SALARY CAP
+    FUNCTION WHAT_IS_SALARY_CAP 
+    RETURN NUMBER
+    IS
+    BEGIN
+        
+        RETURN SALARY_CAP;         
+    
+    END WHAT_IS_SALARY_CAP;
 
 
 --CREATE PROCEDURE FOR ADD EMPLOYEE TO TABLE
@@ -181,6 +197,15 @@ CREATE OR REPLACE PACKAGE BODY package_test AS
         ELSE
             RETURN false;
         END IF;
+        
     END check_salary;
+    
+    ----------------------------------------------------------------------------------------------------
+    
+    --CREATE INITIALIZATION LOGIC 
+    BEGIN
+        SELECT SUM(SALARY) * 2
+        INTO SALARY_CAP
+        FROM EMPLOYEES;
 
 END package_test;

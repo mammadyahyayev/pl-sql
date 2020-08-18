@@ -1,0 +1,4 @@
+CREATE OR REPLACE DIRECTORY TEXTDIRECTORY AS 'D:\pl-sql-practice\textfiles';
+
+--DIRECTORY DICTIONARY
+SELECT * FROM dba_directories;
